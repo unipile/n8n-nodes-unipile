@@ -1,0 +1,71 @@
+{
+  "name": "@unipile/n8n-nodes-unipile",
+  "version": "0.1.0",
+  "description": "Official n8n community node for Unipile: LinkedIn (Classic, Sales Navigator, Recruiter), WhatsApp, Instagram, Telegram, Email (Gmail, Outlook, IMAP) and Calendar.",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "unipile",
+    "linkedin",
+    "linkedin recruiter",
+    "linkedin sales navigator",
+    "linkedin api",
+    "whatsapp",
+    "instagram",
+    "telegram",
+    "imap",
+    "email",
+    "gmail",
+    "outlook",
+    "calendar",
+    "messaging",
+    "sales",
+    "recruiting"
+  ],
+  "license": "MIT",
+  "homepage": "https://developer.unipile.com/docs/mcp",
+  "author": {
+    "name": "Unipile SAS",
+    "email": "contact@unipile.com",
+    "url": "https://www.unipile.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unipile/n8n-nodes-unipile.git"
+  },
+  "main": "index.js",
+  "files": [
+    "dist",
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc && node scripts/copy-icons.mjs",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/UnipileApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Unipile/Unipile.node.js"
+    ]
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "n8n-workflow": "^1.82.0",
+    "typescript": "5.8.2"
+  },
+  "bugs": {
+    "url": "https://github.com/unipile/n8n-nodes-unipile/issues"
+  },
+  "engines": {
+    "node": ">=18.10"
+  }
+}
