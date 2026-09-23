@@ -4,8 +4,14 @@ export class UnipileApi implements ICredentialType {
   name = "unipileApi";
   displayName = "Unipile API";
   icon = "file:../nodes/Unipile/unipile.svg" as const;
-  documentationUrl = "https://developer.unipile.com/docs/mcp";
+  documentationUrl = "https://developer.unipile.com/v2.0/";
   properties: INodeProperties[] = [
+    {
+      displayName: "This credential is for the Unipile API v2 (https://api.unipile.com/v2). Create a scoped Account API key in your Unipile dashboard.",
+      name: "apiVersionNotice",
+      type: "notice",
+      default: "",
+    },
     {
       displayName: "API Key",
       name: "apiKey",
@@ -13,7 +19,7 @@ export class UnipileApi implements ICredentialType {
       typeOptions: { password: true },
       default: "",
       required: true,
-      description: "Scoped Account API key from your Unipile dashboard. Sent as the X-API-KEY header.",
+      description: "Unipile API v2 scoped Account API key from your Unipile dashboard. Sent as the X-API-KEY header.",
     },
   ];
   authenticate: IAuthenticateGeneric = {

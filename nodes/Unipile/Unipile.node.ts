@@ -45,7 +45,7 @@ export class Unipile implements INodeType {
     group: ["transform"],
     version: 1,
     subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-    description: "LinkedIn (Classic, Sales Navigator, Recruiter), WhatsApp, Instagram, Telegram, Email and Calendar through the Unipile API",
+    description: "LinkedIn (Classic, Sales Navigator, Recruiter), WhatsApp, Instagram, Telegram, Email and Calendar through the Unipile API v2",
     defaults: { name: "Unipile" },
     inputs: [NodeConnectionTypes.Main],
     outputs: [NodeConnectionTypes.Main],

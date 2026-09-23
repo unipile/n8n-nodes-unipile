@@ -1,7 +1,7 @@
 {
   "name": "@unipile/n8n-nodes-unipile",
   "version": "0.2.0",
-  "description": "Official n8n community node for Unipile: LinkedIn (Classic, Sales Navigator, Recruiter), WhatsApp, Instagram, Telegram, Email (Gmail, Outlook, IMAP) and Calendar.",
+  "description": "Official n8n community node for the Unipile API v2: LinkedIn (Classic, Sales Navigator, Recruiter), WhatsApp, Instagram, Telegram, Email (Gmail, Outlook, IMAP) and Calendar.",
   "keywords": [
     "n8n-community-node-package",
     "n8n",
@@ -20,7 +20,8 @@
     "calendar",
     "messaging",
     "sales",
-    "recruiting"
+    "recruiting",
+    "unipile api v2"
   ],
   "license": "MIT",
   "homepage": "https://developer.unipile.com/docs/mcp",

@@ -1,6 +1,6 @@
 # @unipile/n8n-nodes-unipile
 
-Official n8n community node for [Unipile](https://developer.unipile.com): LinkedIn (Classic, Sales Navigator, Recruiter), WhatsApp, Instagram, Telegram, Gmail/Outlook/IMAP and Google/Outlook Calendar, without an agent in the loop.
+Official n8n community node for the [Unipile API v2](https://developer.unipile.com/v2.0/): LinkedIn (Classic, Sales Navigator, Recruiter), WhatsApp, Instagram, Telegram, Gmail/Outlook/IMAP and Google/Outlook Calendar, without an agent in the loop.
 
 Maintained by Unipile under the [`unipile`](https://github.com/unipile) GitHub organization.
 
