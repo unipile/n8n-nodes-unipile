@@ -305,7 +305,7 @@ export class Unipile implements INodeType {
           else result = await unipileControlPlane.call(this, "GET", `/accounts/${encodeURIComponent(str("getAccountId", index))}`);
         } else if (resource === "linkedinClassic") {
           if (operation === "getProfile") result = await unipileMethod.call(this, "GET", accountId, `/users/${encodeURIComponent(str("userId", index))}`);
-          else if (operation === "searchPeople") result = await unipileMethod.call(this, "POST", accountId, "/linkedin/search", { ...keywords(), ...filters() });
+          else if (operation === "searchPeople") result = await unipileMethod.call(this, "POST", accountId, "/linkedin/search/people", { ...keywords(), ...filters() });
           else if (operation === "searchCompanies") result = await unipileMethod.call(this, "POST", accountId, "/linkedin/search/companies", { ...keywords(), ...filters() });
           else if (operation === "searchJobs") result = await unipileMethod.call(this, "POST", accountId, "/linkedin/search/jobs", { ...keywords(), ...filters() });
           else if (operation === "searchPosts") result = await unipileMethod.call(this, "POST", accountId, "/linkedin/search/posts", { ...keywords(), ...filters() });
@@ -318,13 +318,13 @@ export class Unipile implements INodeType {
           else if (operation === "getInmailCredits") result = await unipileMethod.call(this, "GET", accountId, "/linkedin/inmail-credits");
           else result = await unipileMethod.call(this, "GET", accountId, "/linkedin/contracts");
         } else if (resource === "linkedinSalesNavigator") {
-          if (operation === "searchPeople") result = await unipileMethod.call(this, "POST", accountId, "/linkedin/sales-navigator/search", { ...keywords(), ...filters() });
+          if (operation === "searchPeople") result = await unipileMethod.call(this, "POST", accountId, "/linkedin/sales-navigator/search/people", { ...keywords(), ...filters() });
           else if (operation === "searchFromUrl") result = await unipileMethod.call(this, "POST", accountId, "/linkedin/sales-navigator/search", { url: str("searchUrl", index) });
           else result = await unipileMethod.call(this, "GET", accountId, "/linkedin/sales-navigator/search/parameters", undefined, compact({ type: str("parameterType", index), keywords: str("parameterQuery", index) }));
         } else if (resource === "linkedinRecruiter") {
-          if (operation === "searchPeople") result = await unipileMethod.call(this, "POST", accountId, "/linkedin/recruiter/search", { ...keywords(), ...filters() });
+          if (operation === "searchPeople") result = await unipileMethod.call(this, "POST", accountId, "/linkedin/recruiter/search/people", { ...keywords(), ...filters() });
           else if (operation === "searchFromUrl") result = await unipileMethod.call(this, "POST", accountId, "/linkedin/recruiter/search", { url: str("searchUrl", index) });
-          else result = await unipileMethod.call(this, "GET", accountId, "/linkedin/recruiter/search/parameters", undefined, compact({ type: str("parameterType", index), keywords: str("parameterQuery", index) }));
+          else result = await unipileMethod.call(this, "POST", accountId, "/linkedin/recruiter/search/parameters", compact({ source: "SEARCH", type: str("parameterType", index), keywords: str("parameterQuery", index) }));
         } else if (resource === "messaging") {
           if (operation === "listChats") result = await unipileMethod.call(this, "GET", accountId, "/chats", undefined, { limit: this.getNodeParameter("limit", index, 50) });
           else if (operation === "getChat") result = await unipileMethod.call(this, "GET", accountId, `/chats/${encodeURIComponent(str("chatId", index))}`);
