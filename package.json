@@ -1,6 +1,6 @@
 {
   "name": "@unipile/n8n-nodes-unipile",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Official n8n community node for Unipile: LinkedIn (Classic, Sales Navigator, Recruiter), WhatsApp, Instagram, Telegram, Email (Gmail, Outlook, IMAP) and Calendar.",
   "keywords": [
     "n8n-community-node-package",

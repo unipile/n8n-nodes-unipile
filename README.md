@@ -2,7 +2,7 @@
 
 Official n8n community node for [Unipile](https://developer.unipile.com): LinkedIn (Classic, Sales Navigator, Recruiter), WhatsApp, Instagram, Telegram, Gmail/Outlook/IMAP and Google/Outlook Calendar, without an agent in the loop.
 
-This is the maintained, officially supported node under the `unipile` GitHub org. If you were using the third-party `n8n-nodes-unipile` package (a separate, unaffiliated community project), this one covers the same ground plus the LinkedIn product distinctions below, and is the one linked from [unipile.com](https://www.unipile.com/mcp).
+Maintained by Unipile under the [`unipile`](https://github.com/unipile) GitHub organization.
 
 ## Install
 
@@ -12,12 +12,30 @@ In n8n: **Settings → Community Nodes → Install**, package name `@unipile/n8n
 
 ## Credentials
 
-Add a **Unipile API** credential:
+Add a **Unipile API** credential and pick the API version your Unipile account uses.
 
-- **API Key** — a scoped Account API key from your Unipile dashboard.
-- **DSN (Base URL)** — your Unipile tenant's DSN, protocol and port included (e.g. `https://api1.unipile.com:13111`). It is specific to your account; there is no shared default.
+### API v2 (recommended)
 
-Requests are authenticated with `X-API-KEY`. The credential test calls `GET {DSN}/v2/accounts`.
+| Field | Value |
+|---|---|
+| API Version | `API v2` |
+| API Key | A scoped Account API key, created in your Unipile dashboard for the Scope that holds the accounts this workflow may use |
+
+No DSN: every v2 account calls the same base URL, `https://api.unipile.com/v2`. The key alone decides which accounts are visible. Every operation of this node runs on API v2.
+
+The credential test calls `GET https://api.unipile.com/v2/accounts`.
+
+### API v1 (legacy)
+
+| Field | Value |
+|---|---|
+| API Version | `API v1 (Legacy)` |
+| API Key | The access token from your Unipile dashboard |
+| DSN | Your account's DSN, protocol and port included, as shown in your Unipile dashboard (e.g. `https://api1.unipile.com:13111`) |
+
+Requests go to `{DSN}/api/v1`. The typed operations below are written against v2 routes, so a v1 credential only works with **Any Endpoint**: set the method and a v1 path such as `/chats` or `/users/{provider_id}`, and pass `account_id` in the query or body as the v1 docs describe. Any other operation stops with an error asking you to switch to Any Endpoint or to a v2 credential.
+
+Both versions authenticate with the `X-API-KEY` header.
 
 ## Resources and operations
 
@@ -29,7 +47,7 @@ Requests are authenticated with `X-API-KEY`. The credential test calls `GET {DSN
 - **Email** (Gmail, Outlook, any IMAP mailbox) — List Emails, List Folder Emails, Get Email, Send Email, Mark as Read/Unread, List Folders.
 - **Calendar** (Google, Outlook) — List Calendars, Get Calendar, List Events, Create/Update/Delete Event, RSVP Event.
 - **Post** — Create Post, Get Post, Comment Post, List Comments, Add Reaction.
-- **Any Endpoint** — method + path + query + body passthrough, for anything not covered above yet (job postings, Recruiter applicants/resumes, hiring projects…). Same request either way: whether you run it from this node or call it directly from your own code, it's the same Unipile V2 endpoint.
+- **Any Endpoint** — method + path + query + body passthrough on the credential's base URL, for anything not covered above yet (job postings, Recruiter applicants/resumes, hiring projects…), and the only operation available with an API v1 credential. It is the same request you would send from your own code.
 
 Every operation other than Account takes an **Account ID** (`unipile_account_id` from List Accounts) — Unipile never guesses which connected account a call runs on.
 

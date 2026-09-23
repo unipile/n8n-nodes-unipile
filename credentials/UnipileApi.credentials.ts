@@ -7,22 +7,33 @@ export class UnipileApi implements ICredentialType {
   documentationUrl = "https://developer.unipile.com/docs/mcp";
   properties: INodeProperties[] = [
     {
+      displayName: "API Version",
+      name: "apiVersion",
+      type: "options",
+      options: [
+        { name: "API v2", value: "v2", description: "Base URL https://api.unipile.com/v2, scoped Account API key. Every operation of this node." },
+        { name: "API v1 (Legacy)", value: "v1", description: "Base URL = your account's DSN + /api/v1. Any Endpoint operation only." },
+      ],
+      default: "v2",
+    },
+    {
       displayName: "API Key",
       name: "apiKey",
       type: "string",
       typeOptions: { password: true },
       default: "",
       required: true,
-      description: "Scoped Account API key from your Unipile dashboard. Sent as the X-API-KEY header.",
+      description: "API v2: a scoped Account API key from your Unipile dashboard. API v1: the access token from your Unipile dashboard. Sent as the X-API-KEY header.",
     },
     {
-      displayName: "DSN (Base URL)",
+      displayName: "DSN",
       name: "dsn",
       type: "string",
       default: "",
       required: true,
       placeholder: "https://api1.unipile.com:13111",
-      description: "Your Unipile tenant's DSN, protocol and port included. Copy it from your Unipile dashboard; it is specific to your account, there is no shared default.",
+      description: "API v1 only: your account's DSN, protocol and port included, as shown in your Unipile dashboard",
+      displayOptions: { show: { apiVersion: ["v1"] } },
     },
   ];
   authenticate: IAuthenticateGeneric = {
@@ -31,7 +42,7 @@ export class UnipileApi implements ICredentialType {
   };
   test: ICredentialTestRequest = {
     request: {
-      baseURL: "={{$credentials.dsn}}/v2",
+      baseURL: "={{$credentials.apiVersion === \"v1\" ? $credentials.dsn.replace(/\\/+$/, \"\") + \"/api/v1\" : \"https://api.unipile.com/v2\"}}",
       url: "/accounts",
       method: "GET",
     },
