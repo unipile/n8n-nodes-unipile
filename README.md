@@ -12,30 +12,11 @@ In n8n: **Settings → Community Nodes → Install**, package name `@unipile/n8n
 
 ## Credentials
 
-Add a **Unipile API** credential and pick the API version your Unipile account uses.
+This node uses the Unipile API v2. Add a **Unipile API** credential with a single field:
 
-### API v2 (recommended)
+- **API Key** — a scoped Account API key, created in your Unipile dashboard for the Scope that holds the accounts this workflow may use.
 
-| Field | Value |
-|---|---|
-| API Version | `API v2` |
-| API Key | A scoped Account API key, created in your Unipile dashboard for the Scope that holds the accounts this workflow may use |
-
-No DSN: every v2 account calls the same base URL, `https://api.unipile.com/v2`. The key alone decides which accounts are visible. Every operation of this node runs on API v2.
-
-The credential test calls `GET https://api.unipile.com/v2/accounts`.
-
-### API v1 (legacy)
-
-| Field | Value |
-|---|---|
-| API Version | `API v1 (Legacy)` |
-| API Key | The access token from your Unipile dashboard |
-| DSN | Your account's DSN, protocol and port included, as shown in your Unipile dashboard (e.g. `https://api1.unipile.com:13111`) |
-
-Requests go to `{DSN}/api/v1`. The typed operations below are written against v2 routes, so a v1 credential only works with **Any Endpoint**: set the method and a v1 path such as `/chats` or `/users/{provider_id}`, and pass `account_id` in the query or body as the v1 docs describe. Any other operation stops with an error asking you to switch to Any Endpoint or to a v2 credential.
-
-Both versions authenticate with the `X-API-KEY` header.
+Requests go to `https://api.unipile.com/v2` with the key in the `X-API-KEY` header; the key alone decides which accounts are visible. The credential test calls `GET https://api.unipile.com/v2/accounts`.
 
 ## Resources and operations
 
@@ -47,7 +28,7 @@ Both versions authenticate with the `X-API-KEY` header.
 - **Email** (Gmail, Outlook, any IMAP mailbox) — List Emails, List Folder Emails, Get Email, Send Email, Mark as Read/Unread, List Folders.
 - **Calendar** (Google, Outlook) — List Calendars, Get Calendar, List Events, Create/Update/Delete Event, RSVP Event.
 - **Post** — Create Post, Get Post, Comment Post, List Comments, Add Reaction.
-- **Any Endpoint** — method + path + query + body passthrough on the credential's base URL, for anything not covered above yet (job postings, Recruiter applicants/resumes, hiring projects…), and the only operation available with an API v1 credential. It is the same request you would send from your own code.
+- **Any Endpoint** — method + path + query + body passthrough on `https://api.unipile.com/v2`, for anything not covered above yet (job postings, Recruiter applicants/resumes, hiring projects…). It is the same request you would send from your own code.
 
 Every operation other than Account takes an **Account ID** (`unipile_account_id` from List Accounts) — Unipile never guesses which connected account a call runs on.
 

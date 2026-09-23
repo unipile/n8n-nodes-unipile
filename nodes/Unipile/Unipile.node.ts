@@ -278,7 +278,7 @@ export class Unipile implements INodeType {
 
       // ---- Any Endpoint ----
       { displayName: "Method", name: "anyMethod", type: "options", options: ["GET", "POST", "PATCH", "PUT", "DELETE"].map((m) => ({ name: m, value: m })), default: "GET", displayOptions: show("anyEndpoint") },
-      { displayName: "Path", name: "anyPath", type: "string", default: "", required: true, placeholder: "/{account_id}/linkedin/recruiter/applicants/{applicant_id}", description: "Path relative to the API base of the credential (https://api.unipile.com/v2 for API v2, {DSN}/api/v1 for API v1), including any {account_id} for v2 account routes. Use Search/Get Endpoint on the Unipile MCP, or the developer docs, to find it.", displayOptions: show("anyEndpoint") },
+      { displayName: "Path", name: "anyPath", type: "string", default: "", required: true, placeholder: "/{account_id}/linkedin/recruiter/applicants/{applicant_id}", description: "Path relative to the API base https://api.unipile.com/v2, including any {account_id}. Use Search/Get Endpoint on the Unipile MCP, or the developer docs, to find it.", displayOptions: show("anyEndpoint") },
       { displayName: "Query (JSON)", name: "anyQuery", type: "json", default: "{}", displayOptions: show("anyEndpoint") },
       { displayName: "Body (JSON)", name: "anyBody", type: "json", default: "{}", displayOptions: show("anyEndpoint") },
     ],
